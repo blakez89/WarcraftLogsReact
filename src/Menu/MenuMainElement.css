@@ -1,0 +1,64 @@
+.mydiv {
+  display: flex;
+  flex-direction: row;
+  height: 35px;
+  width: 100px;
+}
+
+#mainaccordionbutton{
+height: 20px;
+}
+.accordion {
+  font-size:small;
+  color: #f2f2f2;
+  background-color:#333;
+  border: #ddd;
+  outline: none;
+  text-align: left;
+  height: 35px;
+  width: 100px;
+  cursor: pointer;
+  transition: background-color 0.2s linear;
+  
+}
+.accordion:hover {
+  background-color:  rgb(66, 65, 65);
+}
+.accordion-content {
+  font-size:small;
+  background-color:#333;
+  padding: 5px; 
+ 
+  overflow: hidden;
+  position: relative;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1;
+  margin: 0;
+  color: #f2f2f2;
+ 
+}
+.accordion-content-item {
+  display: block;
+  display: grid;
+  font-size:small;
+  background-color:#333;
+  color: #f2f2f2;
+  grid-template-columns: 1;
+  position: relative;
+  text-decoration: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  cursor: pointer;
+  
+}
+.accordion-content-item a {
+text-decoration: none;
+  display: block;
+  transition: background-color 0.2s linear;
+}
+.accordion-content-item:hover {
+ background-color:  rgb(66, 65, 65);
+ cursor: pointer;
+ 
+} 

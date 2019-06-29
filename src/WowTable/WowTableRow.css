@@ -1,0 +1,4 @@
+.infodiv {
+    display: flex;
+    flex-direction: row;
+}
