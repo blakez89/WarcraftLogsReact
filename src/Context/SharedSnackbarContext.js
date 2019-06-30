@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import SharedSnackbar from './SharedSnackbarComponent'
+import {getJsonData} from '../Logic/WowFunctions'
+
+
 
 const SharedSnackbarContext = React.createContext();
 
@@ -11,7 +14,7 @@ export class SharedSnackbarProvider extends Component {
     super(props);
 
     this.state = {
-      classData : []
+      classData : ['e','f','g','h']
     };
   }
 
@@ -34,8 +37,7 @@ export class SharedSnackbarProvider extends Component {
              
         }}
       >
-        <SharedSnackbar />
-      
+      <SharedSnackbar />
         {children}
       </SharedSnackbarContext.Provider>
     );

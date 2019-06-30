@@ -14,13 +14,13 @@ export default class WowTableRow extends React.Component{
 
 
     createData = (dataArray,title) => {
-      let thePtags =  dataArray.map((data,i)=>
+      let tags =  dataArray.map((data,i)=>
        (
        <li key={data+(i++)}>{data}</li>
        )
     )
 
-    return <div><h1>{title}</h1><ul>{thePtags}</ul></div> 
+    return <div><h1>{title}</h1><ul>{tags}</ul></div> 
 
     }
     

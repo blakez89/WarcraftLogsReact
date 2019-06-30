@@ -1,6 +1,7 @@
 import React from "react";
 import "./MenuSubElement.css";
 import { SharedSnackbarConsumer } from '../Context/SharedSnackbarContext'
+import {WowContextConsumer} from '../Context/WowContextProvider'
 
 export default class MenuSubElement extends React.Component{
     constructor(props){
@@ -24,13 +25,13 @@ handleMouseHover() {
 
 createList = () =>{
     const numberList = this.props.jsonArrayLevelTwo.map( (data)=>
-                <SharedSnackbarConsumer key={data.name.toString()}>
+                <WowContextConsumer key={data.name.toString()}>
                 { ({ manageClassState })  => (
         <div className="accordion-content-item" onClick={()=>manageClassState(data.name,data.id,this.props.jsonArrayLevelOne.name,this.props.jsonArrayLevelOne.id)}>
                      {data.name}
                 </div>
                 )}
-            </SharedSnackbarConsumer>
+            </WowContextConsumer>
     );
     return (
         <ul className="accordion-content">{numberList}</ul>

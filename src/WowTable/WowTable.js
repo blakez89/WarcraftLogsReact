@@ -33,7 +33,7 @@ export default class WoWTable extends React.Component{
 
     } 
 
-     createWorkingData = (myArray) => {
+/*      createWorkingData = (myArray) => {
         let myNewArray = []
 
         myArray.forEach(char =>
@@ -53,7 +53,7 @@ export default class WoWTable extends React.Component{
           );
 
         return myNewArray;    
-    } 
+    }  */
     
     maketheTablerows = () =>{            
       return this.state.trymockJsonData.map((rank,i)=>
