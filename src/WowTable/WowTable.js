@@ -1,72 +1,64 @@
 import React from 'react';
-import {getJsonData} from '../Logic/WowFunctions'
 import "./WowTable.css";
 import WowTableRow from './WowTableRow'
-import { SharedSnackbarConsumer } from '../Context/SharedSnackbarContext'
-
-
+import { WowContext } from '../Context/WowContextProvider'
+import uuid from 'uuid/v1'
+import NavBar from '../NavBar/NavBar'
 
 export default class WoWTable extends React.Component{
 
-    // each table row needs its own state
-    constructor(props){
-        super(props);
-        this.state = {
-          trymockJsonData: [],
-        };
-        
-    }
+  constructor(props){
+    super(props);
+    this.state = {
+      pageSize: 5,
+      currentPage: 1,
+    };
 
-     componentDidMount(){
-      getJsonData(2265,10,3).then(response=>{
-        this.setState(
-            {
-              trymockJsonData: response
-            }
+}
+
+handleMouseHover() {
+  this.setState(this.toggleHoverState);
+}
+
+toggleHoverState(state) {
+  return {
+    isHovering: !state.isHovering,
+  };
+}
+  
+nextPage = () => {
+  console.log(this.state.currentPage*this.state.pageSize)
+  console.log(this.context.rankings.length)
+  if( (this.state.currentPage*this.state.pageSize) < this.context.rankings.length) {this.setState({currentPage : this.state.currentPage + 1})};
+}
+
+prevPage = () => {
+  console.log(this.state.currentPage*this.state.pageSize)
+  console.log(this.context.rankings.length)
+  if(this.state.currentPage > 1) { this.setState({currentPage : this.state.currentPage - 1}) };
+}    
 
 
-        )
 
-
-      })
-
-
-    } 
-
-/*      createWorkingData = (myArray) => {
-        let myNewArray = []
-
-        myArray.forEach(char =>
-            myNewArray.push({
-              title: char.name,
-              value: char.guildName,
-              server: char.serverName,
-              region: char.regionName,
-              talents: char.talents.map(talent => talent.name),
-              azeritepowers: char.azeritePowers
-                .filter(
-                  azeritePower => azeritePower.ring === 3 || azeritePower === 2
-                )
-                .map(azeritePower => azeritePower.name),
-                gear: char.gear.map(gear=>gear.name)
-            })
-          );
-
-        return myNewArray;    
-    }  */
-    
     maketheTablerows = () =>{            
-      return this.state.trymockJsonData.map((rank,i)=>
-          <WowTableRow parserank={++i} row={rank} key={rank.title} />
-            )
-
+      return this.context.rankings.map((rank,i)=>
+          <WowTableRow parserank={++i} row={rank} key={uuid()} />
+            ).filter((data,index) => {
+              let start = (this.state.currentPage-1)*this.state.pageSize;
+              let end = this.state.currentPage*this.state.pageSize;
+              if(index >= start && index < end) return true;            
+            })
     }
 
-
+ 
     render(){
         
         return(
             <div className="wowtable">
+              <NavBar />
+              {this.state.currentPage} ----------
+              {this.state.pageSize} ---------
+              {this.context.rankings.length}
             <table className="container" border="1">
             <tbody>
                 <tr>
@@ -82,8 +74,8 @@ export default class WoWTable extends React.Component{
               </tbody>
             </table>
         
-        <button>Previous</button> 
-        <button>Next</button>
+        <button onClick={this.prevPage.bind(this)}>Previous</button> 
+        <button onClick={this.nextPage.bind(this)}>Next</button>
          
           </div>
 
@@ -96,3 +88,5 @@ export default class WoWTable extends React.Component{
     }
 
 }
+
+WoWTable.contextType = WowContext

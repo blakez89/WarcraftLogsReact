@@ -2,11 +2,9 @@
 .container {
     text-align: center;
     display: table;
-    width: 800px;
-    height: 800px;
     color: #fff;
 }
-.container td {
+.container td,th {
     width: 160px;
     height: 40px;
   

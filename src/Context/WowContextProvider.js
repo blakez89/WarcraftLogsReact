@@ -1,5 +1,5 @@
 import React, {createContext,Component} from 'react';
-
+import {getJsonData} from '../Logic/WowFunctions'
 export const WowContext = createContext()
 
 
@@ -7,18 +7,54 @@ export default class WowContextProvider extends Component{
 
 
     state = {
-        classData : ['a','b','c','d']
+        zoneData : ["Battle for Dazar'alor",21,'Champion of the Light',2265],
+        classData : ['Warlock',10,'Destruction',3],
+        rankings: [],
+        loading: false,
       };
 
-      manageClassState = (...args) => {
-        this.setState({
-          classData : args
-        });
-    };
+      manageState = (arg,[...args]) => {
+        if (arg === 'Classes'){
+        this.setState({classData : args,loading:true})
+        getJsonData(this.state.zoneData[3],args[1],args[3]).then(response=>{
+          this.setState(
+              {
+                rankings: response,
+                loading: false
+              }
+          )
+        })
+      }
+
+      if (arg === 'Zones'){
+        this.setState({zoneData : args,loading:true})
+        getJsonData(args[3],this.state.classData[1],this.state.classData[3]).then(response=>{
+          this.setState(
+              {
+                rankings: response,
+                loading: false
+              }
+          )
+        })
+      }
+    
+      };
+
+    componentDidMount(){
+      this.setState({loading:true})
+      getJsonData(this.state.zoneData[3],this.state.classData[1],this.state.classData[3]).then(response=>{
+        this.setState(
+            {
+              rankings: response,
+              loading: false
+            }
+        )
+      })
+    } 
 
       render(){
-        return( <WowContext.Provider value={{ manageClassState: this.manageClassState,
-            classData: this.state.classData}}>
+        return( <WowContext.Provider value={{ manageState: this.manageState,
+            classData: this.state.classData,rankings: this.state.rankings,zoneData:this.state.zoneData,loading:this.state.loading}}>
             {this.props.children}
         </WowContext.Provider>
 

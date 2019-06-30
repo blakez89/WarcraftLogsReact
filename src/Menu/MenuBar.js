@@ -17,9 +17,10 @@ export default class MenuBar extends React.Component{
     render(){
         return(
             <div className="menuitems">
-        <MenuMainElement jsonObject={this.zones} theString={'encounters'} title="Zones"/>
-        <MenuMainElement jsonObject={this.classes} theString={'specs'} title="Classes"/>
-        
+        <MenuMainElement jsonObject={this.zones} theString={'encounters'} title="Zones" />
+        <MenuMainElement jsonObject={this.classes} theString={'specs'} title="Classes" />
+            
+       
         </div> 
         )
     }

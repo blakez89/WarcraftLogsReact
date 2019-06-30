@@ -1,6 +1,5 @@
 function resolveData(chars){
   let trueJsonArray = [];
-
     chars.forEach(char =>
       trueJsonArray.push({
         title: char.name,
@@ -26,7 +25,7 @@ function resolveData(chars){
 export const getJsonData = function(fightID, WoWclass, spec) {
     
     let key = "api_key=30ff6c3bd1b9fbda8a0cb3f8d574b88b";
-    let url = `https://www.warcraftlogs.com:443/v1/rankings/encounter/${fightID}?difficulty=5&class=${WoWclass}&spec=${spec}&region=US&api_key=30ff6c3bd1b9fbda8a0cb3f8d574b88b`;
+    let url = `https://www.warcraftlogs.com:443/v1/rankings/encounter/${fightID}?difficulty=5&class=${WoWclass}&spec=${spec}&region=US&${key}`;
     return new Promise((resolve, reject) => {
       let theJsonData = fetch(url)
         .then(data => data.json())

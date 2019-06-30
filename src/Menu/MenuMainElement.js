@@ -31,7 +31,7 @@ export default class MenuMainElement extends React.Component{
       // need to use SPREAD operator
       createList = () =>{
         const filteredJson = this.props.jsonObject.map( (jsonData)=>
-            <MenuSubElement jsonArrayLevelOne={jsonData} jsonArrayLevelTwo={this.getJsonLevelTwo(jsonData,this.props.theString)} key={jsonData.name.toString()} />
+            <MenuSubElement title={this.props.title}jsonArrayLevelOne={jsonData} jsonArrayLevelTwo={this.getJsonLevelTwo(jsonData,this.props.theString)} key={jsonData.name.toString()} />
         );
     
         return (
@@ -50,19 +50,9 @@ export default class MenuMainElement extends React.Component{
                 onMouseEnter={this.handleMouseHover}
                 onMouseLeave={this.handleMouseHover}
                 > 
-
-                    
                    {this.props.title}
-                   
-
-
                     {this.state.isHovering && this.createList()}
                     </div>
-
-                
-                
-                
-
             </div>
         )
     }
