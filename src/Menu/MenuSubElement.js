@@ -1,5 +1,6 @@
 import React from "react";
 import "./MenuSubElement.css";
+import "./MenuMainElement.css";
 import {WowContextConsumer} from '../Context/WowContextProvider'
 
 export default class MenuSubElement extends React.Component{
@@ -28,11 +29,7 @@ createList = () =>{
 
                 { ({ manageState })  => (
         <div className="accordion-content-item" onClick={()=>
-        {    
-        manageState(this.props.title,[this.props.jsonArrayLevelOne.name, this.props.jsonArrayLevelOne.id,data.name, data.id])
-        console.log(this.props.title,[this.props.jsonArrayLevelOne.name, this.props.jsonArrayLevelOne.id,data.name, data.id])
-        } 
-        }>
+        {manageState(this.props.title,[this.props.jsonArrayLevelOne.name, this.props.jsonArrayLevelOne.id,data.name, data.id])} }>
                      {data.name}
                 </div>
                 )}

@@ -17,23 +17,22 @@ function resolveData(chars){
     );
     
     return trueJsonArray
-
-  }
-
+    }
 
 
-export const getJsonData = function(fightID, WoWclass, spec) {
-    
-    let key = "api_key=30ff6c3bd1b9fbda8a0cb3f8d574b88b";
-    let url = `https://www.warcraftlogs.com:443/v1/rankings/encounter/${fightID}?difficulty=5&class=${WoWclass}&spec=${spec}&region=US&${key}`;
-    return new Promise((resolve, reject) => {
-      let theJsonData = fetch(url)
-        .then(data => data.json())
-        .then(data => data.rankings);
-      if (!theJsonData) reject(new Error('Error retrieving Warcraft Log information'));
-      resolve(theJsonData);
-    }).then(data=>resolveData(data))
-  }
-
+ export const getJsonData = function(fightID, WoWclass, spec) {
+  let key = "api_key=30ff6c3bd1b9fbda8a0cb3f8d574b88b";
+  let url = `https://www.warcraftlogs.com:443/v1/rankings/encounter/${fightID}?difficulty=5&class=${WoWclass}&spec=${spec}&region=US&${key}`;
+  return new Promise((resolve, reject) => {
+    let theJsonData = fetch(url)
+      .then(data =>{if(data.ok) 
+        return data.json();
+        reject(new Error('there was an error'))
+      })
+      .then(data => data.rankings);
+    resolve(theJsonData);
+  }).then(data=>resolveData(data))
+    .catch(error=> console.log(error))
+} 
 
 

@@ -1,24 +1,36 @@
 .mydiv {
   display: flex;
   flex-direction: row;
-  height: 35px;
-  width: 100px;
+  height: 20px;
+  width: 150px;
+  
 }
 
+
 #mainaccordionbutton{
-height: 20px;
+
+  color: green;
+  width: 150px;
+  text-align: center;
+  height:45px;
+  background-color: black;
+  word-wrap: break-word;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+
 .accordion {
   font-size:small;
-  color: #f2f2f2;
-  background-color:#333;
+  /* color: #f2f2f2; */
+ 
+  background-color: black;
   border: #ddd;
   outline: none;
   text-align: left;
-  height: 35px;
-  width: 100px;
+  height: 20px;
+  width: 150px;
   cursor: pointer;
   transition: background-color 0.2s linear;
+ 
   
 }
 .accordion:hover {
@@ -26,29 +38,31 @@ height: 20px;
 }
 .accordion-content {
   font-size:small;
-  background-color:#333;
+  color: green;
+  background-color: black;
+  
+
   padding: 5px; 
- 
   overflow: hidden;
   position: relative;
   list-style: none;
   display: grid;
   grid-template-columns: 1;
   margin: 0;
-  color: #f2f2f2;
+  
  
 }
 .accordion-content-item {
   display: block;
   display: grid;
   font-size:small;
-  background-color:#333;
-  color: #f2f2f2;
+  padding-top: 2.5px;
+  padding-bottom: 2.5px; 
+ 
   grid-template-columns: 1;
   position: relative;
   text-decoration: none;
-  padding-top: 5px;
-  padding-bottom: 5px;
+ 
   cursor: pointer;
   
 }

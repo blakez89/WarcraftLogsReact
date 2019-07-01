@@ -3,14 +3,14 @@ import "./WowTable.css";
 import WowTableRow from './WowTableRow'
 import { WowContext } from '../Context/WowContextProvider'
 import uuid from 'uuid/v1'
-import NavBar from '../NavBar/NavBar'
+
 
 export default class WoWTable extends React.Component{
 
   constructor(props){
     super(props);
     this.state = {
-      pageSize: 5,
+      pageSize: 10,
       currentPage: 1,
     };
 
@@ -27,20 +27,16 @@ toggleHoverState(state) {
 }
   
 nextPage = () => {
-  console.log(this.state.currentPage*this.state.pageSize)
-  console.log(this.context.rankings.length)
   if( (this.state.currentPage*this.state.pageSize) < this.context.rankings.length) {this.setState({currentPage : this.state.currentPage + 1})};
 }
 
 prevPage = () => {
-  console.log(this.state.currentPage*this.state.pageSize)
-  console.log(this.context.rankings.length)
   if(this.state.currentPage > 1) { this.setState({currentPage : this.state.currentPage - 1}) };
 }    
 
 
 
-    maketheTablerows = () =>{            
+    maketheTablerows = () =>{          
       return this.context.rankings.map((rank,i)=>
           <WowTableRow parserank={++i} row={rank} key={uuid()} />
             ).filter((data,index) => {
@@ -48,17 +44,15 @@ prevPage = () => {
               let end = this.state.currentPage*this.state.pageSize;
               if(index >= start && index < end) return true;            
             })
-    }
+            
+          }
 
  
     render(){
         
         return(
             <div className="wowtable">
-              <NavBar />
-              {this.state.currentPage} ----------
-              {this.state.pageSize} ---------
-              {this.context.rankings.length}
+
             <table className="container" border="1">
             <tbody>
                 <tr>
@@ -74,14 +68,30 @@ prevPage = () => {
               </tbody>
             </table>
         
+        <div className="buttonPanel">
+
+        <div className="prevAndnext">
         <button onClick={this.prevPage.bind(this)}>Previous</button> 
         <button onClick={this.nextPage.bind(this)}>Next</button>
-         
+
+  
+
+        </div> 
+
+          <div className="adjusters">
+        Current page:{"  "+ this.state.currentPage}
+        {/* Results per page:{this.state.pageSize} */}
+              
+              </div>
+
+          <span>
+          Made with <a href="https://www.warcraftlogs.com">Warcraft Logs</a> API
+          </span>
           </div>
 
                   
 
-
+          </div>
 
 
         )

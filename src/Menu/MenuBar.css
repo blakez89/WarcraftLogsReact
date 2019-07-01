@@ -1,4 +1,16 @@
+.mainMenu{
+  display: flex;
+  justify-content: space-between;
+  width: 1000px;
+  height: 50px;
+  padding-bottom: 20px;
+}
+
 .menuitems {
     display: flex;
     flex-direction: row;
   }
+
+ .loadingtext{
+   text-align: start;
+ }

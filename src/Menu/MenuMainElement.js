@@ -44,18 +44,42 @@ export default class MenuMainElement extends React.Component{
 
     render(){
         return(
-            <div className = "accordion" id="mainaccordionbutton">
+            <div id = "mainaccordionbutton"
+            
+            onMouseEnter={this.handleMouseHover}
+            onMouseLeave={this.handleMouseHover}
+          
+            >
 
-                <div
-                onMouseEnter={this.handleMouseHover}
-                onMouseLeave={this.handleMouseHover}
-                > 
-                   {this.props.title}
-                    {this.state.isHovering && this.createList()}
-                    </div>
+
+          
+    {this.props.display}
+      
+
+         {this.state.isHovering && this.createList()}     
+                    
             </div>
         )
     }
+
+/*     render(){
+      return(
+          <div className = "accordion" >
+
+              <div
+              onMouseEnter={this.handleMouseHover}
+              onMouseLeave={this.handleMouseHover}
+              id="mainaccordionbutton"
+              > 
+                 {this.props.display}
+                  {this.state.isHovering && this.createList()}
+                  </div>
+          </div>
+      )
+  } */
+
+
+
 
 
 }

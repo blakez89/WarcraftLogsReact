@@ -29,12 +29,17 @@ export default class WowContextProvider extends Component{
       if (arg === 'Zones'){
         this.setState({zoneData : args,loading:true})
         getJsonData(args[3],this.state.classData[1],this.state.classData[3]).then(response=>{
+          if(response){
           this.setState(
               {
                 rankings: response,
                 loading: false
               }
-          )
+          )}
+          if(!response){
+            alert(`Sorry,there was an error retrieving information for ${this.state.zoneData[2]} `)
+            this.setState({zoneData : ["Battle for Dazar'alor",21,'Champion of the Light',2265],loading:false})
+          }
         })
       }
     
@@ -43,14 +48,19 @@ export default class WowContextProvider extends Component{
     componentDidMount(){
       this.setState({loading:true})
       getJsonData(this.state.zoneData[3],this.state.classData[1],this.state.classData[3]).then(response=>{
+        if(response){
         this.setState(
             {
               rankings: response,
               loading: false
             }
-        )
-      })
+        )}
+        
+      }
+      
+      )
     } 
+
 
       render(){
         return( <WowContext.Provider value={{ manageState: this.manageState,
