@@ -6,6 +6,7 @@ export default class WowContextProvider extends Component {
   state = {
     zoneData: ["Battle for Dazar'alor", 21, "Champion of the Light", 2265],
     classData: ["Warlock", 10, "Destruction", 3],
+    difficultyData: ["Mythic", 5],
     rankings: [],
     loading: false
   };
@@ -13,7 +14,12 @@ export default class WowContextProvider extends Component {
   manageState = (arg, [...args]) => {
     if (arg === "Classes") {
       this.setState({ classData: args, loading: true });
-      getJsonData(this.state.zoneData[3], args[1], args[3]).then(response => {
+      getJsonData(
+        this.state.zoneData[3],
+        args[1],
+        args[3],
+        this.state.difficultyData[1]
+      ).then(response => {
         this.setState({
           rankings: response,
           loading: false
@@ -26,7 +32,8 @@ export default class WowContextProvider extends Component {
       getJsonData(
         args[3],
         this.state.classData[1],
-        this.state.classData[3]
+        this.state.classData[3],
+        this.state.difficultyData[1]
       ).then(response => {
         if (response) {
           this.setState({
@@ -52,6 +59,21 @@ export default class WowContextProvider extends Component {
         }
       });
     }
+
+    if (arg === "Difficulty") {
+      this.setState({ difficultyData: args, loading: true });
+      getJsonData(
+        this.state.zoneData[3],
+        this.state.classData[1],
+        this.state.classData[3],
+        args[1]
+      ).then(response => {
+        this.setState({
+          rankings: response,
+          loading: false
+        });
+      });
+    }
   };
 
   componentDidMount() {
@@ -59,7 +81,8 @@ export default class WowContextProvider extends Component {
     getJsonData(
       this.state.zoneData[3],
       this.state.classData[1],
-      this.state.classData[3]
+      this.state.classData[3],
+      this.state.difficultyData[1]
     ).then(response => {
       if (response) {
         this.setState({
@@ -78,7 +101,8 @@ export default class WowContextProvider extends Component {
           classData: this.state.classData,
           rankings: this.state.rankings,
           zoneData: this.state.zoneData,
-          loading: this.state.loading
+          loading: this.state.loading,
+          difficultyData: this.state.difficultyData
         }}
       >
         {this.props.children}

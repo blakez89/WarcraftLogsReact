@@ -1,7 +1,7 @@
 import React from "react";
 import MenuMainElement from "./MenuMainElement";
 import "./MenuBar.css";
-import { Zones, Classes } from "../Logic/WowData";
+import { Zones, Classes, Difficulty } from "../Logic/WowData";
 import { WowContextConsumer } from "../Context/WowContextProvider";
 
 export default class MenuBar extends React.Component {
@@ -9,6 +9,7 @@ export default class MenuBar extends React.Component {
     super(props);
     this.zones = Zones;
     this.classes = Classes;
+    this.difficulty = Difficulty;
     this.state = {
       isHovering: false
     };
@@ -16,16 +17,16 @@ export default class MenuBar extends React.Component {
 
   getLoadingText = valueTest => {
     if (valueTest) {
-      return <h1>Now Loading...</h1>;
+      return <h2>Now Loading...</h2>;
     } else {
-      return <h1>Warcraft Logs: React</h1>;
+      return <h2>Warcraft Logs: React</h2>;
     }
   };
 
   render() {
     return (
       <WowContextConsumer>
-        {({ classData, zoneData, loading }) => (
+        {({ classData, zoneData, loading,difficultyData }) => (
           <div className="mainMenu">
             <div className="menuitems">
               <MenuMainElement
@@ -40,11 +41,16 @@ export default class MenuBar extends React.Component {
                 title="Classes"
                 display={loading ? "..." : classData[2] + " " + classData[0]}
               />
+                <MenuMainElement
+                jsonObject={this.difficulty}
+                title="Difficulty"
+                display={loading ? "..." : difficultyData[0]}
+              />  
 
 
 
 
-              
+
             </div>
             <div className="loadingtext">{this.getLoadingText(loading)}</div>
           </div>

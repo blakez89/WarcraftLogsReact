@@ -29,6 +29,10 @@ function App() {
           <li>Azerite Power 6</li>
           <br></br>
           <button>Click here to hide this panel</button>
+          <br></br>
+          <p>Add Region Selection Next</p>
+          <p>Also add the ability to select all specs if you just click the class</p>
+          <p> Also add class specific styling</p>
           {/* TODO */}
         </div>
 

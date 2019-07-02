@@ -393,7 +393,24 @@ export const Classes  = [
 ]
 
 
-
+export const Difficulty = [
+      {
+        id:1,
+        name: 'LFR'
+      },
+      {
+        id:3,
+        name: 'Normal'
+      },
+      {
+        id:4,
+        name: 'Heroic'
+      },
+      {
+        id:5,
+        name: 'Mythic'
+      }
+]
 
 
 /* export const Classes = theClasses

@@ -17,9 +17,9 @@ function resolveData(chars) {
   return trueJsonArray;
 }
 
-export const getJsonData = function(fightID, WoWclass, spec) {
+export const getJsonData = function(fightID, WoWclass, spec,difficulty) {
   let key = "api_key=30ff6c3bd1b9fbda8a0cb3f8d574b88b";
-  let url = `https://www.warcraftlogs.com:443/v1/rankings/encounter/${fightID}?difficulty=5&class=${WoWclass}&spec=${spec}&region=US&${key}`;
+  let url = `https://www.warcraftlogs.com:443/v1/rankings/encounter/${fightID}?difficulty=${difficulty}&class=${WoWclass}&spec=${spec}&region=US&${key}`;
   return new Promise((resolve, reject) => {
     let theJsonData = fetch(url)
       .then(data => {

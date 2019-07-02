@@ -10,7 +10,6 @@ export default class MenuSubElement extends React.Component {
     this.state = { isHovering: false };
   }
 
-  // see if we can inherit these methods from MenuMainElement????
   handleMouseHover() {
     this.setState(this.toggleHoverState);
   }
@@ -22,6 +21,7 @@ export default class MenuSubElement extends React.Component {
   }
 
   createList = () => {
+    if (!this.props.jsonArrayLevelTwo) return;
     const numberList = this.props.jsonArrayLevelTwo.map(data => (
       <WowContextConsumer key={data.name.toString()}>
         {({ manageState }) => (
@@ -52,10 +52,23 @@ export default class MenuSubElement extends React.Component {
         onMouseLeave={this.handleMouseHover}
       >
         <div className="maindiv">
-          <div className="accordion">
-            {/* This always needs to be displayed*/}
-            {this.props.jsonArrayLevelOne.name}
-          </div>
+          <WowContextConsumer>
+            {({ manageState }) => (
+              <div
+                className="accordion"
+                onClick={() => {
+                  this.props.jsonArrayLevelTwo
+                    ? console.log("I have no children")
+                    : manageState(this.props.title, [
+                        this.props.jsonArrayLevelOne.name,
+                        this.props.jsonArrayLevelOne.id
+                      ]);
+                }}
+              >
+                {this.props.jsonArrayLevelOne.name}
+              </div>
+            )}
+          </WowContextConsumer>
         </div>
 
         <div>
