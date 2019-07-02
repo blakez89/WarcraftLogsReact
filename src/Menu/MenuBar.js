@@ -40,6 +40,11 @@ export default class MenuBar extends React.Component {
                 title="Classes"
                 display={loading ? "..." : classData[2] + " " + classData[0]}
               />
+
+
+
+
+              
             </div>
             <div className="loadingtext">{this.getLoadingText(loading)}</div>
           </div>

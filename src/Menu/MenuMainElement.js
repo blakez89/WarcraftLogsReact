@@ -41,14 +41,18 @@ export default class MenuMainElement extends React.Component {
 
   render() {
     return (
+      <div className="forcegrid">
       <div
-        id="mainaccordionbutton"
+        className="mainaccordionbutton"
         onMouseEnter={this.handleMouseHover}
         onMouseLeave={this.handleMouseHover}
       >
         {this.props.display}
 
+        <div className="sublists">
         {this.state.isHovering && this.createList()}
+        </div>
+      </div>
       </div>
     );
   }
