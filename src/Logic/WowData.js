@@ -412,6 +412,15 @@ export const Difficulty = [
       }
 ]
 
+export const Region = [
+  {
+    name: 'US'
+  },
+  {
+    name: 'EU'
+  }
+]
+
 
 /* export const Classes = theClasses
 

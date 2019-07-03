@@ -1,0 +1,9 @@
+.infoPanel{
+    width: 350px;
+    height:600px;
+    background-color: black;
+    color: white;
+    z-index: -1;
+    text-align: center;
+    padding: 2.5px;
+}

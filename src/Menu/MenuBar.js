@@ -1,7 +1,7 @@
 import React from "react";
 import MenuMainElement from "./MenuMainElement";
 import "./MenuBar.css";
-import { Zones, Classes, Difficulty } from "../Logic/WowData";
+import { Zones, Classes, Difficulty, Region } from "../Logic/WowData";
 import { WowContextConsumer } from "../Context/WowContextProvider";
 
 export default class MenuBar extends React.Component {
@@ -10,6 +10,7 @@ export default class MenuBar extends React.Component {
     this.zones = Zones;
     this.classes = Classes;
     this.difficulty = Difficulty;
+    this.region = Region
     this.state = {
       isHovering: false
     };
@@ -26,7 +27,7 @@ export default class MenuBar extends React.Component {
   render() {
     return (
       <WowContextConsumer>
-        {({ classData, zoneData, loading,difficultyData }) => (
+        {({ classData, zoneData, loading,difficultyData,region }) => (
           <div className="mainMenu">
             <div className="menuitems">
               <MenuMainElement
@@ -45,6 +46,11 @@ export default class MenuBar extends React.Component {
                 jsonObject={this.difficulty}
                 title="Difficulty"
                 display={loading ? "..." : difficultyData[0]}
+              />  
+                <MenuMainElement
+                jsonObject={this.region}
+                title="Region"
+                display={loading ? "..." : region}
               />  
 
 

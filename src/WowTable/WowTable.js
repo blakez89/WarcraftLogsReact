@@ -8,10 +8,11 @@ export default class WoWTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pageSize: 10,
+      pageSize: 25,
       currentPage: 1
     };
   }
+
 
   handleMouseHover() {
     this.setState(this.toggleHoverState);
@@ -23,20 +24,42 @@ export default class WoWTable extends React.Component {
     };
   }
 
+
   nextPage = () => {
-    if (
-      this.state.currentPage * this.state.pageSize <
-      this.context.rankings.length
-    ) {
-      this.setState({ currentPage: this.state.currentPage + 1 });
+    let booltest = this.state.currentPage * this.state.pageSize <this.context.rankings.length;
+    if (booltest) {
+      return <span className="activeSpan" onClick={()=>this.setState({ currentPage: this.state.currentPage + 1 })}> Next &gt;</span>;
     }
+    
+    return <span className="placeholderSpan">  Next &nbsp; </span>
   };
 
+
   prevPage = () => {
-    if (this.state.currentPage > 1) {
-      this.setState({ currentPage: this.state.currentPage - 1 });
+    let booltest = (this.state.currentPage > 1);
+    if (booltest) {
+      return <span className="activeSpan" onClick={()=>this.setState({ currentPage: this.state.currentPage - 1 })}> &lt; Previous </span>;
     }
+    return <span className="placeholderSpan"> &nbsp; Previous  </span>
   };
+
+
+
+
+  // make the prev not appear if on first page, make the next not appear if on the last page
+  makePageButtons = () => {
+    return (
+
+
+      <div className="prevAndnext">
+     {this.prevPage()}
+     &nbsp;&nbsp;
+     {this.nextPage()} 
+    </div>
+    
+    
+    )
+  }
 
   maketheTablerows = () => {
     return this.context.rankings
@@ -55,11 +78,12 @@ export default class WoWTable extends React.Component {
           <tbody>
             <tr>
               <th>Rank</th>
-              <th>Character Name</th>
-              <th>Guild</th>
-              <th>Server</th>
+              <th className="widerColumn">Character Name</th>
+              <th className="widerColumn">Guild</th>
+              <th className="widerColumn">Server</th>
               <th>Region</th>
-              <th>Click Me</th>
+              <th>Duration</th>
+              <th>Details</th>
             </tr>
 
             {this.maketheTablerows()}
@@ -67,10 +91,7 @@ export default class WoWTable extends React.Component {
         </table>
 
         <div className="buttonPanel">
-          <div className="prevAndnext">
-            <button onClick={this.prevPage.bind(this)}>Previous</button>
-            <button onClick={this.nextPage.bind(this)}>Next</button>
-          </div>
+          {this.makePageButtons()}
 
           <div className="adjusters">
             Current page:{"  " + this.state.currentPage}

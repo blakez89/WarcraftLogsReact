@@ -1,5 +1,5 @@
 import React, { createContext, Component } from "react";
-import { getJsonData } from "../Logic/WowFunctions";
+import { getJsonData, getTopTalents} from "../Logic/WowFunctions";
 export const WowContext = createContext();
 
 export default class WowContextProvider extends Component {
@@ -7,6 +7,7 @@ export default class WowContextProvider extends Component {
     zoneData: ["Battle for Dazar'alor", 21, "Champion of the Light", 2265],
     classData: ["Warlock", 10, "Destruction", 3],
     difficultyData: ["Mythic", 5],
+    region: 'US',
     rankings: [],
     loading: false
   };
@@ -18,13 +19,15 @@ export default class WowContextProvider extends Component {
         this.state.zoneData[3],
         args[1],
         args[3],
-        this.state.difficultyData[1]
+        this.state.difficultyData[1],
+        this.state.region
       ).then(response => {
         this.setState({
           rankings: response,
           loading: false
         });
       });
+      return true;
     }
 
     if (arg === "Zones") {
@@ -33,7 +36,8 @@ export default class WowContextProvider extends Component {
         args[3],
         this.state.classData[1],
         this.state.classData[3],
-        this.state.difficultyData[1]
+        this.state.difficultyData[1],
+        this.state.region
       ).then(response => {
         if (response) {
           this.setState({
@@ -58,6 +62,7 @@ export default class WowContextProvider extends Component {
           });
         }
       });
+      return true;
     }
 
     if (arg === "Difficulty") {
@@ -66,14 +71,35 @@ export default class WowContextProvider extends Component {
         this.state.zoneData[3],
         this.state.classData[1],
         this.state.classData[3],
-        args[1]
+        args[1],
+        this.state.region
       ).then(response => {
         this.setState({
           rankings: response,
           loading: false
         });
       });
+      return true;
     }
+    
+
+    if (arg === "Region"){
+      this.setState({ region: args[0], loading: true });
+      getJsonData(
+        this.state.zoneData[3],
+        this.state.classData[1],
+        this.state.classData[3],
+        this.state.difficultyData[1],
+        args[0]
+      ).then(response => {
+        this.setState({
+          rankings: response,
+          loading: false
+        });
+      });
+      return true;
+    }
+
   };
 
   componentDidMount() {
@@ -82,9 +108,11 @@ export default class WowContextProvider extends Component {
       this.state.zoneData[3],
       this.state.classData[1],
       this.state.classData[3],
-      this.state.difficultyData[1]
+      this.state.difficultyData[1],
+      this.state.region
     ).then(response => {
       if (response) {
+        getTopTalents(response)
         this.setState({
           rankings: response,
           loading: false
@@ -102,7 +130,8 @@ export default class WowContextProvider extends Component {
           rankings: this.state.rankings,
           zoneData: this.state.zoneData,
           loading: this.state.loading,
-          difficultyData: this.state.difficultyData
+          difficultyData: this.state.difficultyData,
+          region: this.state.region
         }}
       >
         {this.props.children}

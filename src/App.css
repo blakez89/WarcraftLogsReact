@@ -10,15 +10,7 @@
         z-index: -1;
 }
 
-.infoPanel{
-    width: 250px;
-    height:600px;
-    background-color: black;
-    color: white;
-    z-index: -1;
-    text-align: center;
-    padding: 2.5px;
-}
+
 
 .mainContent{
     margin-left: 20px;

@@ -24,8 +24,7 @@ export default class WowTableRow extends React.Component {
   createInfoDiv = () => {
     return (
       <tr>
-        {/*Fix magic number 6 here */}
-        <td colSpan={6}>
+        <td colSpan={7}>
           {/*Make the below div into a flex row */}
           <div className="infodiv">
             {this.createData(this.props.row.azeritepowers, "Azerite Powers")}
@@ -52,13 +51,13 @@ export default class WowTableRow extends React.Component {
         <tr>
           {/*Add color styles to rank, 1st is orange 10 top purple etc */}
           <td>{this.props.parserank}</td>
-          <td>{this.props.row.title}</td>
-          <td>{this.props.row.value}</td>
-          <td>{this.props.row.server}</td>
+          <td className="widerColumn">{this.props.row.title}</td>
+          <td className="widerColumn">{this.props.row.value}</td>
+          <td className="widerColumn">{this.props.row.server}</td>
           <td>{this.props.row.region}</td>
-
+          <td>{this.props.row.time}</td>
           <td>
-            <button onClick={this.handleClick}>Click Me</button>
+          <div onClick={this.handleClick}><i className={this.state.shouldShow ? 'up' : 'down'}></i></div>
           </td>
         </tr>
 
