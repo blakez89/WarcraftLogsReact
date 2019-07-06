@@ -6,7 +6,7 @@
 .container {
     text-align: center;
     display: table;
-    color: #fff;
+    
 }
 
 .widerColumn{
@@ -40,25 +40,29 @@
 .talent:hover .tooltiptext {
     visibility: visible;
 }
-.container tr {
+.special {
     transition: background-color 0.2s linear;
     
 }
-.container th {
-    color: green;
-    background-color: black;
+
+.special:hover {
+    background-color: rgb(154, 173, 255);
     
 }
-.container tr:hover {
-    background-color: rgb(18, 7, 48) !important;
+.container th {
+    background-color: rgb(154, 173, 255) !important;
+    
 }
+
+
+
 
 .apclass:hover {
     color: whitesmoke !important;
 }
 
 .container tr {
-    background-color: rgb(42, 43, 46);
+    /* background-color: rgb(144, 148, 161); */
 }
 
 /*

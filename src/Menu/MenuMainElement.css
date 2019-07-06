@@ -15,8 +15,8 @@
 }
 
 .mainaccordionbutton{
-  color: green;
-  background-color: black;
+/*   color: green; */
+background-color: rgb(154, 173, 255);
   text-align: center;
   border: darkgrey;
   border-style: solid;
@@ -30,8 +30,8 @@
   font-size:small;
   /* color: #f2f2f2; */
   width: 125px;
-  color: green;
-  background-color: black;
+/*   color: green; */
+  background-color: rgb(154, 173, 255);
   border: darkgrey;
   border-style: solid;
   outline: none;
@@ -42,47 +42,13 @@
   
 }
 .accordion:hover {
-  background-color:  rgb(66, 65, 65);
+  background-color:  rgb(111, 109, 233);
 }
-/* .accordion-content {
-  font-size:small;
-  color: green;
-  background-color: black;
-  width:50px;
-  text-align: left;
-  overflow: hidden;
-  position: relative;
-  list-style: none;
-  display: grid;
-  grid-template-columns: 1;
-  margin: 0;
-  
- 
-}
-.accordion-content-item {
-/*   display: flex;
-  flex-direction: row; 
-  font-size:small;
-  text-decoration: none;
-  cursor: pointer;
-  
-}
-.accordion-content-item a {
-text-decoration: none;
-  display: block;
-  transition: background-color 0.2s linear;
-}
-.accordion-content-item:hover {
- background-color:  rgb(66, 65, 65);
- cursor: pointer;
- 
-} 
- */
+
 
  .accordion-content {
-  font-size:small;
-  color: green;
-  background-color: black;
+  font-size:small;;
+  background-color: rgb(154, 173, 255);
   border: darkgrey;
   border-style: solid;
   padding: 5px; 
@@ -115,7 +81,7 @@ text-decoration: none;
   transition: background-color 0.2s linear;
 }
 .accordion-content-item:hover {
- background-color:  rgb(66, 65, 65);
+  background-color:  rgb(111, 109, 233);
  cursor: pointer;
  
 } 

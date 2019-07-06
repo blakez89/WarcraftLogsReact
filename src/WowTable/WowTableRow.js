@@ -21,9 +21,12 @@ export default class WowTableRow extends React.Component {
     );
   };
 
+ 
+
+
   createInfoDiv = () => {
     return (
-      <tr>
+      <tr className="noHover">
         <td colSpan={7}>
           {/*Make the below div into a flex row */}
           <div className="infodiv">
@@ -47,10 +50,10 @@ export default class WowTableRow extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
-        <tr>
+      <React.Fragment >
+        <tr className="special">
           {/*Add color styles to rank, 1st is orange 10 top purple etc */}
-          <td>{this.props.parserank}</td>
+          <td >{this.props.parserank}</td>
           <td className="widerColumn">{this.props.row.title}</td>
           <td className="widerColumn">{this.props.row.value}</td>
           <td className="widerColumn">{this.props.row.server}</td>
@@ -61,7 +64,7 @@ export default class WowTableRow extends React.Component {
           </td>
         </tr>
 
-        {this.state.shouldShow && this.createInfoDiv()}
+        {this.state.shouldShow &&  this.createInfoDiv()}
       </React.Fragment>
     );
   }

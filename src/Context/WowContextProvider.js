@@ -9,6 +9,7 @@ export default class WowContextProvider extends Component {
     difficultyData: ["Mythic", 5],
     region: 'US',
     rankings: [],
+    topTalents: [],
     loading: false
   };
 
@@ -23,6 +24,7 @@ export default class WowContextProvider extends Component {
         this.state.region
       ).then(response => {
         this.setState({
+          topTalents: getTopTalents(response),
           rankings: response,
           loading: false
         });
@@ -41,6 +43,7 @@ export default class WowContextProvider extends Component {
       ).then(response => {
         if (response) {
           this.setState({
+            topTalents: getTopTalents(response),
             rankings: response,
             loading: false
           });
@@ -75,6 +78,7 @@ export default class WowContextProvider extends Component {
         this.state.region
       ).then(response => {
         this.setState({
+          topTalents: getTopTalents(response),
           rankings: response,
           loading: false
         });
@@ -93,6 +97,7 @@ export default class WowContextProvider extends Component {
         args[0]
       ).then(response => {
         this.setState({
+          topTalents: getTopTalents(response),
           rankings: response,
           loading: false
         });
@@ -112,8 +117,8 @@ export default class WowContextProvider extends Component {
       this.state.region
     ).then(response => {
       if (response) {
-        getTopTalents(response)
         this.setState({
+          topTalents: getTopTalents(response),
           rankings: response,
           loading: false
         });
@@ -131,7 +136,8 @@ export default class WowContextProvider extends Component {
           zoneData: this.state.zoneData,
           loading: this.state.loading,
           difficultyData: this.state.difficultyData,
-          region: this.state.region
+          region: this.state.region,
+          topTalents: this.state.topTalents
         }}
       >
         {this.props.children}

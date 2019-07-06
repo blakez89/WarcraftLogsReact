@@ -9,13 +9,13 @@ class InfoPanel extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            
+            mylist:[1,2,3,4,5]
         }
     }
     
-    makeSimpleList = (mylist) => {
-        const mynewlist = mylist.map(num=>(<p key={uuid()}>{num}</p>))
-        return mynewlist;
+    makeSimpleList = () => {
+        return this.context.topTalents.map(talent=>(<p key={uuid()}>{talent}</p>))
+        
 
     }
 
@@ -23,17 +23,8 @@ class InfoPanel extends React.Component {
     render() { 
         return ( 
             <div className="infoPanel">
-            <h1> TODO  </h1>
-            {/* {this.displayTopTalents()} */}
-{/*             <h2>Talent Summary</h2>
-            <p>Talent 1 99% </p>
-            <p>Talent 2 98%</p>
-            <p>Talent 3 100%</p>
-            <p>Talent 4 97%</p>
-            <p>Talent 5 100%</p>
-            <p>Talent 6 99%</p>
-            <p>Talent 7 99%</p> */}
-            {/* TODO */}
+            <h1> Talent Analysis </h1>
+            {this.makeSimpleList(this.state.mylist)}
           </div>
          );
     }
